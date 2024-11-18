@@ -35,7 +35,7 @@ jobs:
         name: Build and Publish Docker Image
         run:
           mvn compile jib:dockerBuild
-          docker login -u <${{ secrets.DOCKER_USERNAME }}> -p <${{ secrets.DOCKER_PASSWORD }}>
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} <docker.io>
           docker push ${{ secrets.DOCKER_USERNAME }}/bookmarker-api
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
 

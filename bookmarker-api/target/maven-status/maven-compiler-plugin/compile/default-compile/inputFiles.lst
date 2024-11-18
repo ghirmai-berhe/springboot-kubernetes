@@ -1,0 +1,9 @@
+/Users/Ghirmai/Desktop/post-miu/springboot-kubernetes/bookmarker-api/src/main/java/com/ghirmai/bookmarker_api/BookmarkerApiApplication.java
+/Users/Ghirmai/Desktop/post-miu/springboot-kubernetes/bookmarker-api/src/main/java/com/ghirmai/bookmarker_api/DataInitializer.java
+/Users/Ghirmai/Desktop/post-miu/springboot-kubernetes/bookmarker-api/src/main/java/com/ghirmai/bookmarker_api/controller/BookmarkController.java
+/Users/Ghirmai/Desktop/post-miu/springboot-kubernetes/bookmarker-api/src/main/java/com/ghirmai/bookmarker_api/domain/Bookmark.java
+/Users/Ghirmai/Desktop/post-miu/springboot-kubernetes/bookmarker-api/src/main/java/com/ghirmai/bookmarker_api/dto/BookmarkDTO.java
+/Users/Ghirmai/Desktop/post-miu/springboot-kubernetes/bookmarker-api/src/main/java/com/ghirmai/bookmarker_api/dto/BookmarkResponse.java
+/Users/Ghirmai/Desktop/post-miu/springboot-kubernetes/bookmarker-api/src/main/java/com/ghirmai/bookmarker_api/mapper/BookmarkMapper.java
+/Users/Ghirmai/Desktop/post-miu/springboot-kubernetes/bookmarker-api/src/main/java/com/ghirmai/bookmarker_api/repository/BookmarkRepository.java
+/Users/Ghirmai/Desktop/post-miu/springboot-kubernetes/bookmarker-api/src/main/java/com/ghirmai/bookmarker_api/service/BookmarkService.java

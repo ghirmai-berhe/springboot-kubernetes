@@ -1,0 +1,11 @@
+com/ghirmai/bookmarker_api/repository/BookmarkRepository.class
+com/ghirmai/bookmarker_api/domain/Bookmark$BookmarkBuilder.class
+com/ghirmai/bookmarker_api/DataInitializer.class
+com/ghirmai/bookmarker_api/mapper/BookmarkMapper.class
+com/ghirmai/bookmarker_api/domain/Bookmark.class
+com/ghirmai/bookmarker_api/dto/BookmarkDTO$BookmarkDTOBuilder.class
+com/ghirmai/bookmarker_api/BookmarkerApiApplication.class
+com/ghirmai/bookmarker_api/service/BookmarkService.class
+com/ghirmai/bookmarker_api/dto/BookmarkResponse.class
+com/ghirmai/bookmarker_api/dto/BookmarkDTO.class
+com/ghirmai/bookmarker_api/controller/BookmarkController.class

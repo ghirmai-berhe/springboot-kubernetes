@@ -34,7 +34,7 @@ jobs:
       - if: ${{ github.ref == 'refs/heads/main'}} # if any commit made to main build and publish will be triggered
         name: Build and Publish Docker Image
         run:
-          mvn clean package jib:dockerBuild -DskipTests
+          mvn compile jib:build -DskipTests
           docker login -u ${{ secrets.DOCKER_USERNAME}} -P ${{ secrets.DOCKER_PASSWORD }}
           docker push ${{ secrets.DOCKER_USERNAME }}/bookmarker-api
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive

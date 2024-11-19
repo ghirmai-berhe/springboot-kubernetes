@@ -13,7 +13,8 @@ import java.util.List;
 @Data
 
 public class BookmarkResponse {
-    private List<BookmarkDTO> data;
+//    private List<BookmarkDTO> data;
+    private List<BookmarkerVM> data;
     private long totalElements;
     private int totalPages;
     private int currentPage;
@@ -24,7 +25,18 @@ public class BookmarkResponse {
     private boolean hasNext;
     private boolean hasPrev;
 
-    public BookmarkResponse(Page<BookmarkDTO> page){
+//    public BookmarkResponse(Page<BookmarkDTO> page){
+//        this.setData(page.getContent());
+//        this.setTotalElements(page.getNumberOfElements());
+//        this.setTotalPages(page.getTotalPages());
+//        this.setCurrentPage(page.getNumber()+1);
+//        this.setFirst(page.isFirst());
+//        this.setLast(page.isLast());
+//        this.setHasNext(page.hasNext());
+//        this.setHasPrev(page.hasPrevious());
+//    }
+
+    public BookmarkResponse(Page<BookmarkerVM> page){
         this.setData(page.getContent());
         this.setTotalElements(page.getNumberOfElements());
         this.setTotalPages(page.getTotalPages());

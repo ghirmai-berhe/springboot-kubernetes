@@ -3,6 +3,7 @@ package com.ghirmai.bookmarker_api.service;
 import com.ghirmai.bookmarker_api.domain.Bookmark;
 import com.ghirmai.bookmarker_api.dto.BookmarkDTO;
 import com.ghirmai.bookmarker_api.dto.BookmarkResponse;
+import com.ghirmai.bookmarker_api.dto.BookmarkerVM;
 import com.ghirmai.bookmarker_api.mapper.BookmarkMapper;
 import com.ghirmai.bookmarker_api.repository.BookmarkRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,8 +31,17 @@ public class BookmarkService {
     // --------> still in the below code we are loading the whole properties of Bookmark entity and take those defined in DTO still not efficient better to use JPQL in repository
 //    Page<BookmarkDTO> dtoPage = repository.findAll(pageable).map(mapper::toDTO);
 
-    Page<BookmarkDTO> dtoPage = repository.findBookmarks(pageable);
+    Page<BookmarkerVM> dtoPage = repository.findBookmarks(pageable);
     return new BookmarkResponse(dtoPage);
 
+    }
+    @Transactional(readOnly = true)
+    public BookmarkResponse searchBookmarks(Integer page, String query) {
+        int pageNo = page<1?0:page-1;
+        Pageable pageable = PageRequest.of(pageNo,5, Sort.Direction.DESC,"createdAt");
+//        Page<BookmarkDTO> dtoPage = repository.findBookmarkByTitleContainingIgnoreCase(pageable,query);
+        Page<BookmarkerVM> dtoPage = repository.findBookmarkByTitleContainingIgnoreCase(pageable,query);
+
+        return new BookmarkResponse(dtoPage);
     }
 }

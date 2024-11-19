@@ -10,7 +10,7 @@ import java.time.Instant;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+//@NoArgsConstructor  , it will fail the JPA repository method in Repository interface
 public class BookmarkDTO {
 
     private Long id;

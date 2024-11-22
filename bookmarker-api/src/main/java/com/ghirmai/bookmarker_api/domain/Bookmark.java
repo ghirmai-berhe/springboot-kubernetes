@@ -1,6 +1,7 @@
 package com.ghirmai.bookmarker_api.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,9 +20,11 @@ public class Bookmark {
     @SequenceGenerator(name = "bm_id_seq_gen",sequenceName = "bm_id_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "bm_id_seq_gen")
     private Long id;
-     @Column(nullable = false)
+    @NotNull
+     @Column(/*nullable = false*/)
     private String title;
-     @Column(nullable = false)
+    @NotNull
+     @Column(/*nullable = false */)
     private String url;
     private Instant createdAt;
 }

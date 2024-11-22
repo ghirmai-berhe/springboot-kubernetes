@@ -2,6 +2,7 @@ package com.ghirmai.bookmarker_api.repository;
 
 import com.ghirmai.bookmarker_api.domain.Bookmark;
 import com.ghirmai.bookmarker_api.dto.BookmarkDTO;
+import com.ghirmai.bookmarker_api.dto.BookmarkRequestDTO;
 import com.ghirmai.bookmarker_api.dto.BookmarkerVM;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,4 +26,6 @@ public interface BookmarkRepository extends JpaRepository<Bookmark,Long> {
 //    Page<BookmarkDTO> findBookmarkByTitleContainingIgnoreCase(Pageable pageable, String query);
 
     Page<BookmarkerVM> findBookmarkByTitleContainingIgnoreCase(Pageable pageable, String query);
+
+
 }

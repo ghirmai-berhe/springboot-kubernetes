@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -22,8 +23,10 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 // -----> integration testing <------------------
@@ -127,6 +130,55 @@ class BookmarkControllerTest {
 
 
     }
+    @Test
+    void shouldCreateBookmarkSucessfully()throws Exception{
+      this.mvc.perform(
+              post("/api/bookmarks")
+                      .contentType(MediaType.APPLICATION_JSON)
+                      .content("""
 
+{"title": "freedom fighters of 70s",
+"url": "www.bahgna.com"}
+""")
+      ).andExpect(status().isCreated())
+              .andExpect(jsonPath("$.id",notNullValue()))
+              .andExpect(jsonPath("$.title",is("freedom fighters of 70s")))
+              .andExpect(jsonPath("$.url",is("www.bahgna.com")));
+    }
+
+    @Test
+    void shouldFailToCreateBookmarkWhenUrlIsNotPresent()throws Exception{
+        this.mvc.perform(
+                post("/api/bookmarks")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+{"title": "zombies"}
+""")
+        ).andExpect(status().isBadRequest())
+//                --> below details we get from postman response & header when fail end with 400 status
+                .andExpect(header().string("content-Type",is("application/problem+json")))
+                .andExpect(jsonPath("$.type",is("https://zalando.github.io/problem/constraint-violation")))
+                .andExpect(jsonPath("$.title",is("Constraint Violation")))
+                .andExpect(jsonPath("$.status",is(400)))
+                .andExpect(jsonPath("$.violations",hasSize(2)));
+
+
+    }
+
+    @Test
+    void shouldFailToCreateBookmarkWhenTitleIsNotPresent() throws Exception{
+        this.mvc.perform(
+                post("/api/bookmarks")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+{"url": "www.gomida.com"}
+""")
+        ).andExpect(status().isBadRequest())
+                .andExpect(header().string("content-type",is("application/problem+json")))
+                .andExpect(jsonPath("$.type",is("https://zalando.github.io/problem/constraint-violation")))
+                .andExpect(jsonPath("$.title",is("Constraint Violation")))
+                .andExpect(jsonPath("$.status",is(400)))
+                .andExpect(jsonPath("$.violations",hasSize(2)));
+    }
 
 }

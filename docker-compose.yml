@@ -1,29 +1,15 @@
 services:
+
   bookmarker-db:
     image: postgres
     environment:
+      - POSTGRES_USER=ghirmai
+      - POSTGRES_PASSWORD=Learning@Good
       - POSTGRES_DB=MYDB2
-      - POSTGRES_USER=admin2
-      - POSTGRES_PASSWORD=admin2
 
     ports:
-      - 5433:5433
+      - 15432:5432
     volumes:
       - /Users/Ghirmai/postgres_datapart:/var/lib/postgresql/data
     restart: always
-  bookmarker-api:
-    image: ghirmai/bookmarker-api-jib
-    build:
-      context: "./bookmarker-api"
-      dockerfile: Dockerfile.layered
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
-      SPRING_DATASOURCE_URL: jdbc:postgresql://bookmarker-db:5432/MYDB2
-      SPRING_DATASOURCE_USERNAME: admin2
-      SPRING_DATASOURCE_PASSWORD: admin2
-    ports:
-      - 18855:8855
-    restart: always
-    depends_on:
-      - bookmarker-db
+

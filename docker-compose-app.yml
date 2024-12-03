@@ -1,0 +1,17 @@
+services:
+  bookmarker-api:
+    image: ghirmai/bookmarker-api-jib
+    build:
+      context: "./bookmarker-api"
+      dockerfile: Dockerfile.layered
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_DATASOURCE_URL: jdbc:postgresql://bookmarker-db:5432/appdb
+      SPRING_DATASOURCE_USERNAME: admin2
+      SPRING_DATASOURCE_PASSWORD: admin2
+    ports:
+      - 18855:8855
+    restart: always
+    depends_on:
+      - bookmarker-db
